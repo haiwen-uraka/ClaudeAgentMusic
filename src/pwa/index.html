@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <title>Claudio — AI 电台</title>
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#0d0d14">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="app">
+    <!-- Header -->
+    <header class="header">
+      <div class="header-left">
+        <img class="header-avatar" src="https://api.dicebear.com/7.x/avataaars/svg?seed=Claudio" alt="avatar" id="header-avatar">
+        <span class="logo">Claudio</span>
+      </div>
+      <div class="header-right">
+        <button class="btn-login">LOGIN</button>
+        <div class="theme-toggle">
+          <button class="theme-btn" data-theme="dark">DARK</button>
+          <button class="theme-btn" data-theme="light">LIGHT</button>
+        </div>
+      </div>
+    </header>
+
+    <!-- Clock Section -->
+    <section class="clock-section">
+      <div class="clock" id="clock">21:11</div>
+      <div class="clock-day" id="clock-day">Monday</div>
+      <div class="clock-date" id="clock-date">20 · APR · 2026</div>
+      <div class="on-air">
+        <span class="on-air-dot"></span>
+        <span class="on-air-text">ON AIR</span>
+      </div>
+    </section>
+
+    <!-- Now Playing Controls -->
+    <section class="now-playing">
+      <div class="np-bar">
+        <div class="np-left">
+          <div class="equalizer" id="equalizer">
+            <span></span><span></span><span></span><span></span>
+          </div>
+          <div class="np-info">
+            <div class="np-title-row">
+              <span class="np-title" id="np-title">If</span>
+            </div>
+            <div class="np-artist-row">
+              <span class="np-artist" id="np-artist">BREAD</span>
+              <span class="np-status" id="np-status">PLAYING</span>
+            </div>
+          </div>
+        </div>
+        <div class="np-controls">
+          <button class="ctrl-btn" id="btn-prev" title="上一首">⏮</button>
+          <button class="ctrl-btn ctrl-play" id="btn-play-pause" title="播放/暂停">⏸</button>
+          <button class="ctrl-btn" id="btn-next" title="下一首">⏭</button>
+          <button class="ctrl-btn" id="btn-stop" title="停止">⏹</button>
+          <button class="ctrl-btn" id="btn-heart" title="喜欢">♡</button>
+          <button class="ctrl-btn ctrl-text" id="btn-hide">HIDE</button>
+          <button class="ctrl-btn ctrl-text" id="btn-fav">FAV</button>
+          <div class="volume-control">
+            <span class="vol-label">VOL</span>
+            <input type="range" id="volume" class="vol-slider" min="0" max="100" value="80">
+          </div>
+        </div>
+      </div>
+      <!-- Progress -->
+      <div class="progress-container">
+        <span class="time-display" id="time-current">0:19</span>
+        <div class="progress-bar" id="progress-bar">
+          <div class="progress-fill" id="progress-fill"></div>
+        </div>
+        <span class="time-display" id="time-total">2:38</span>
+      </div>
+    </section>
+
+    <!-- Queue -->
+    <section class="queue-section">
+      <div class="queue-header">
+        <span class="queue-label">QUEUE</span>
+        <span class="queue-count" id="queue-count">0 TRACKS</span>
+      </div>
+    </section>
+
+    <!-- Live Station -->
+    <section class="live-station">
+      <div class="station-row" id="station-row">
+        <span class="station-dot"></span>
+        <span class="station-name">Claudio</span>
+        <span class="live-badge">LIVE</span>
+      </div>
+    </section>
+
+    <!-- Connected Status -->
+    <div class="connected-status">
+      <span class="connected-label">Connected to Claudio server</span>
+    </div>
+
+    <!-- Chat Messages -->
+    <section class="chat-section" id="chat-section">
+      <div class="chat-messages" id="chat-messages"></div>
+    </section>
+
+    <!-- Now Playing Footer -->
+    <div class="now-playing-footer">
+      <span class="npf-label">Now playing:</span>
+      <span class="npf-track" id="npf-track">If - Bread</span>
+    </div>
+
+    <!-- Chat Input -->
+    <section class="chat-input-section">
+      <div class="chat-input-wrapper">
+        <input type="text" id="chat-input" placeholder="Say something to the DJ..." autocomplete="off">
+        <button class="mic-btn" id="mic-btn" title="语音输入">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/>
+            <path d="M19 10v2a7 7 0 0 1-14 0v-2"/>
+            <line x1="12" y1="19" x2="12" y2="23"/>
+            <line x1="8" y1="23" x2="16" y2="23"/>
+          </svg>
+        </button>
+        <button class="send-btn" id="send-btn" title="发送">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="22" y1="2" x2="11" y2="13"/>
+            <polygon points="22 2 15 22 11 13 2 9 22 2"/>
+          </svg>
+        </button>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <span class="footer-left">CLAUDIO FM</span>
+      <span class="footer-right connected-dot">
+        <span class="conn-dot"></span>
+        CONNECTED
+      </span>
+    </footer>
+  </div>
+
+  <!-- Profile Modal -->
+  <div class="profile-overlay" id="profile-overlay">
+    <div class="profile-card" id="profile-card">
+      <button class="profile-close" id="profile-close">&times;</button>
+      <div class="profile-top">
+        <img class="profile-avatar" src="https://api.dicebear.com/7.x/avataaars/svg?seed=Claudio" alt="avatar">
+        <div class="profile-identity">
+          <h2 class="profile-name">Claudio</h2>
+          <p class="profile-tagline">一开机我就打碟</p>
+        </div>
+      </div>
+      <div class="profile-3d-avatar">
+        <span class="cat-emoji">🐱</span>
+        <span class="headphone-emoji">🎧</span>
+      </div>
+      <p class="profile-desc">
+        mmguo的私人dj，会打碟的taste.md 🎧<br>
+        Your mood is my prompt.<br>
+        I hate algorithm. I have taste.
+      </p>
+      <div class="profile-stats">
+        <div class="profile-stat">
+          <span class="stat-label">ON AIR</span>
+          <span class="stat-value">24/7</span>
+        </div>
+        <div class="profile-stat">
+          <span class="stat-label">GENRES</span>
+          <span class="stat-value">∞</span>
+        </div>
+        <div class="profile-stat">
+          <span class="stat-label">LISTENER</span>
+          <span class="stat-value" id="listener-count">1</span>
+        </div>
+      </div>
+      <div class="profile-tags">
+        <span class="tag">JAZZ-HIPHOP</span>
+        <span class="tag">NEO-CLASSICAL</span>
+        <span class="tag">90S华语</span>
+        <span class="tag">HIP-HOP</span>
+        <span class="tag">柴可夫斯基&EMINEM</span>
+        <span class="tag">J-ROCK</span>
+        <span class="tag">下雨白噪音</span>
+        <span class="tag">POST-PUNK</span>
+        <span class="tag">SHIBUYA-KEI</span>
+      </div>
+      <div class="profile-footer">
+        CLAUDE × MMGUO
+      </div>
+    </div>
+  </div>
+
+  <audio id="audio-player" preload="auto"></audio>
+  <script src="app.js"></script>
+  <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('sw.js').catch(console.error)
+    }
+  </script>
+</body>
+</html>

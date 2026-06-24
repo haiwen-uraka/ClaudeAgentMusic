@@ -1,0 +1,45 @@
+{
+  "name": "claudio",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Claudio — personal AI radio station powered by Claude",
+  "type": "module",
+  "main": "electron/main.cjs",
+  "scripts": {
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:coverage": "vitest run --coverage",
+    "dev": "tsx watch src/index.ts",
+    "build": "tsc --noEmit",
+    "start": "tsx src/index.ts",
+    "lint": "tsc --noEmit",
+    "generate:icon": "node scripts/generate-icon.cjs",
+    "electron:dev": "electron . --require electron/electron-patch.cjs",
+    "electron:debug": "electron . --inspect=5858 --require electron/electron-patch.cjs",
+    "postinstall": "node scripts/generate-icon.cjs"
+  },
+  "dependencies": {
+    "@fastify/websocket": "^11.0.2",
+    "better-sqlite3": "^12.11.1",
+    "croner": "^10.0.1",
+    "execa": "^9.6.1",
+    "fastify": "^5.8.5",
+    "node-fetch": "^3.3.2",
+    "zod": "^3.24.0"
+  },
+  "devDependencies": {
+    "@types/better-sqlite3": "^7.6.13",
+    "@types/node": "^26.0.0",
+    "@types/ws": "^8.17.0",
+    "@vitest/coverage-v8": "^4.1.9",
+    "asar": "^2.2.0",
+    "electron": "^33.0.0",
+    "tsx": "^4.7.0",
+    "typescript": "^6.0.3",
+    "vite": "^8.0.16",
+    "vitest": "^4.1.9"
+  },
+  "engines": {
+    "node": ">=20.0.0"
+  }
+}
